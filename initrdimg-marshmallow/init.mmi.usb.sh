@@ -160,11 +160,11 @@ if [ "$securehw" == "1" ] && [ "$buildtype" == "user" ]
 then
     if [ "$usb_restricted" == "1" ]
     then
-        echo 1 > /sys/class/android_usb/android0/secure
+        echo 0 > /sys/class/android_usb/android0/secure
     else
         case "$phonelock_type" in
             "1" )
-                echo 1 > /sys/class/android_usb/android0/secure
+                echo 0 > /sys/class/android_usb/android0/secure
             ;;
             * )
                 echo 0 > /sys/class/android_usb/android0/secure
