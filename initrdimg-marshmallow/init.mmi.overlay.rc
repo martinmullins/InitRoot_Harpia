@@ -1,0 +1,70 @@
+import init.mmi.dtv.rc
+import init.oem.rc
+
+on boot
+    # set permission for Dynamic-CABC feature
+    chown system system /sys/class/graphics/fb0/cabc_mode
+    # set permission for HBM feature
+    chown system system /sys/class/graphics/fb0/hbm
+
+on early-init
+    # Mount point for Digital Personalization partition
+    mkdir /customize 0500 root root
+
+on fs
+    #Mount customize partion
+    wait /dev/block/platform/msm_sdcc.1/by-name/customize
+    mount ext4 /dev/block/platform/msm_sdcc.1/by-name/customize /customize ro discard nosuid nodev noatime nodiratime noexec defcontext=u:object_r:user_config_file:s0
+
+    wait /dev/block/platform/msm_sdcc.1/by-name/hw
+    start oem-hw-sh
+
+# FSAC to allow eLabel push at CFC station
+on post-fs
+    mkdir /persist/factory/regulatory 0755 mot_tcmd system
+
+on property:sys.emmc.ffu_start=1
+    start emmc_ffu
+
+service emmc_ffu_check /system/bin/emmc_ffu_check.sh
+    user root
+    class core
+    oneshot
+    disabled
+
+on property:ro.bootmode=mot-factory
+    start emmc_ffu_check
+
+service mbm_spy /system/bin/mbm_spy
+    class late_start
+    user system
+    group system
+    oneshot
+    disabled
+
+on property:sys.boot_completed=1
+    start mbm_spy
+
+# translate MMI property in order to keep the consistent with QCOM
+on property:ro.hw.dualsim=true
+    setprop persist.radio.multisim.config dsds
+
+on property:ro.hw.dualsim=false
+    setprop persist.radio.multisim.config ""
+
+on property:ro.hw.ram=1GB
+    setprop ro.config.low_ram true
+
+service oem-hw-sh /init.oem.hw.sh
+    seclabel u:r:init_hw:s0
+    class core
+    user root
+    oneshot
+    disabled
+
+service oem-hw-config-sh /init.oem.hw.sh -p
+    seclabel u:r:init_hw:s0
+    class main
+    user root
+    oneshot
+    disabled

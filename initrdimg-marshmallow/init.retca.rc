@@ -1,0 +1,2 @@
+on early-init
+    setprop persist.radio.check_iptype true

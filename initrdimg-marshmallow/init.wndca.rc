@@ -1,0 +1,3 @@
+on early-init
+    setprop persist.radio.check_iptype true
+    setprop persist.radio.process_sups_ind 1

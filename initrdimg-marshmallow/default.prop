@@ -1,0 +1,22 @@
+#
+# ADDITIONAL_DEFAULT_PROPERTIES
+#
+ro.secure=1
+ro.allow.mock.location=0
+ro.debuggable=0
+camera2.portability.force_api=1
+ro.adb.secure=1
+ro.zygote=zygote32
+dalvik.vm.image-dex2oat-Xms=64m
+dalvik.vm.image-dex2oat-Xmx=64m
+dalvik.vm.dex2oat-Xms=64m
+dalvik.vm.dex2oat-Xmx=512m
+ro.dalvik.vm.native.bridge=0
+debug.atrace.tags.enableflags=0
+#
+# BOOTIMAGE_BUILD_PROPERTIES
+#
+ro.bootimage.build.date=Sat Aug 27 06:49:27 CDT 2016
+ro.bootimage.build.date.utc=1472298567
+ro.bootimage.build.fingerprint=motorola/harpia_retail/harpia:6.0.1/MPI24.241-2.35-2/2:user/release-keys
+
