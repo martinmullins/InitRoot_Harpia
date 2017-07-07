@@ -3,7 +3,7 @@ Motorolla G4 Play (Amazon) Harpia InitRoot
 * Scratch Address is 0x90000000
 * I used a Padding of 64MB.
 
-* For InitRoot (Phone in FastBoot Mode):
+For InitRoot (Phone in FastBoot Mode):
 ```
 $ ./genimg.sh harpia
 # note the init size reported <size>
@@ -11,13 +11,13 @@ $ ./genimg.sh harpia
 $ ./fastboot.sh harpia <size>
 ```
 
-* SELinux Is Permissive:
+SELinux Is Permissive:
 ```
 $ adb shell getenforce
 Permissive
 ```
 
-* Root shell default from adb:
+Root shell default from adb:
 ```
 $ adb shell
 root@harpia:/ # id
