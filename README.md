@@ -1,7 +1,5 @@
-# harpiaBootloaderUnlock
-Motorolla G4 Play (Amazon) Bootloader Unlock
-
-The idea for the unlock comes from here: https://forum.xda-developers.com/g4-play/help/unlocking-amazon-g4-play-bootloader-t3629834
+# InitRoot XT1607
+Motorolla G4 Play (Amazon) Harpia InitRoot
 
 ```
 For InitRoot:
