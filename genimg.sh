@@ -1,5 +1,14 @@
 #!/bin/bash
 harpia() {
+    #remove .gitignores
+    for i in add sys system proc dev data customize dsp; do
+        gitig="initrdimg-harpia/$i/.gitignore"
+        if [[ -e $gitig ]]; then
+            echo -n "Git doesn't allow empty directores, removing temporary file: "
+            rm -v $gitig
+        fi
+    done
+
     if [[ ! -e pad64 ]]; then
         dd if=/dev/zero of=pad64  bs=1M  count=64
     fi
