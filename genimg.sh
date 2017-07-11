@@ -1,4 +1,12 @@
 #!/bin/bash
+
+# to allow empty folders in the github, recreate them before pushing
+recreateIgnores() {
+    cd initrdimg-harpia/ 
+    touch {sys,system,proc,dev,data,customize,dsp}/.gitignore
+    cd -
+}
+
 harpia() {
     #remove .gitignores
     for i in add sys system proc dev data customize dsp; do
