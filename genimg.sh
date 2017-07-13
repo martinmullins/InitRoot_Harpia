@@ -9,7 +9,7 @@ recreateIgnores() {
 
 harpia() {
     #remove .gitignores
-    for i in add sys system proc dev data customize dsp; do
+    for i in oem add sys system proc dev data customize dsp; do
         gitig="initrdimg-harpia/$i/.gitignore"
         if [[ -e $gitig ]]; then
             echo -n "Git doesn't allow empty directores, removing temporary file: "
