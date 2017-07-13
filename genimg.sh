@@ -3,7 +3,7 @@
 # to allow empty folders in the github, recreate them before pushing
 recreateIgnores() {
     cd initrdimg-harpia/ 
-    touch {sys,system,proc,dev,data,customize,dsp}/.gitignore
+    touch {oem,sys,system,proc,dev,data,customize,dsp}/.gitignore
     cd -
 }
 
