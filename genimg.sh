@@ -48,13 +48,8 @@ harpia_nopad()
     remove_gitignore
 
     cd initrdimg-harpia/ 
-    find . | grep -v [.]$ | cpio -v -R root:root -o -H newc | gzip > ../tmp 
-    SZ=$(awk '{ print $5; }' <(ls -al ../tmp))
-    cat ../tmp > ../initroot-harpia-nopad.cpio.gz 
-    rm -v ../tmp
+    find . | grep -v [.]$ | cpio -v -R root:root -o -H newc | gzip > ../initroot-harpia-nopad.cpio.gz 
     cd -
-    echo "initrd size is $SZ"
-
 
     recreate_gitignore
 }
