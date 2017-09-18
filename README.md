@@ -7,7 +7,7 @@ A persistent root method was provided by Aleph Security: https://alephsecurity.c
 * I identified the best partition to attack was /dev/block/bootdevice/by-name/padC (ie. /dev/mmcblk0p34)
 * I created the scripts findmissing.sh and fixperms.sh to assist in creating initroot.ext4 file
 
-Then the following two steps are enough to obtain persitstent root on 6.0.1 Android Moto G4 Play devices.
+The following two steps are enough to obtain persitstent root on 6.0.1 Android Moto G4 Play devices.
 1. Deploying initroot.ext4 to padC
 ```
 $ dd if=/data/local/tmp/initroot.ext4 of=/dev/block/bootdevice/by-name/padC 
@@ -15,7 +15,9 @@ $ dd if=/data/local/tmp/initroot.ext4 of=/dev/block/bootdevice/by-name/padC
 2. The modifiy the fsg-id UTAG.
 ```
 $ fastboot oem config fsg-id "1 rdinit= root=/dev/mmcblk0p34"
+```
 
+# Non-persistent Root (First Step)
 
 For InitRoot (Phone in FastBoot Mode):
 ```
