@@ -3,6 +3,19 @@ Motorolla G4 Play (Amazon) Harpia InitRoot
 * Scratch Address is 0x90000000
 * I used a Padding of 64MB.
 
+A persistent root method was provided by Aleph Security: https://alephsecurity.com/2017/08/30/untethered-initroot/#persisting-the-payload 
+* I identified the best partition to attack was /dev/block/bootdevice/by-name/padC (ie. /dev/mmcblk0p34)
+* I have created the scripts findmissing.sh and fixperms.sh to assist in creating initroot.ext4 file
+* Deploying initroot.ext4 to padC
+```
+$ dd if=/data/local/tmp/initroot.ext4 of=/dev/block/bootdevice/by-name/padC 
+```
+* The modifiy the fsg-id UTAG.
+```
+$ fastboot oem config fsg-id "1 rdinit= root=/dev/mmcblk0p34"
+```
+* This is enough for persistent root for 6.0.1 Android Moto G4 Play devices.
+
 For InitRoot (Phone in FastBoot Mode):
 ```
 $ ./genimg.sh harpia
